@@ -35,6 +35,22 @@ class GraphQL::SchemaComparator::ResultTest < Minitest::Test
     assert_equal false, result.breaking?
   end
 
+  def test_dangerous_returns_true_when_at_least_one_dangerous_change
+    result = GraphQL::SchemaComparator::Result.new([
+      # GraphQL::SchemaComparator::Changes::FieldRemoved.new(GraphQL::ObjectType.new, GraphQL::Field.new)
+      raise NotImplementedError, 'need to add an example dangerous change'
+    ])
+    assert_equal true, result.dangerous?
+  end
+
+  def test_dangerous_returns_false_when_no_dangerous_changes
+    result = GraphQL::SchemaComparator::Result.new([
+      # GraphQL::SchemaComparator::Changes::FieldAdded.new(GraphQL::ObjectType.new, GraphQL::Field.new)
+      raise NotImplementedError, 'need to add an example dangerous change'
+    ])
+    assert_equal false, result.dangerous?
+  end
+
   def test_breaking_changes
     enum_value_added = GraphQL::SchemaComparator::Changes::EnumValueAdded.new(GraphQL::EnumType.new, GraphQL::EnumType::EnumValue.new)
     field_added = GraphQL::SchemaComparator::Changes::FieldAdded.new(GraphQL::ObjectType.new, GraphQL::Field.new)

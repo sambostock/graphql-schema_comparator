@@ -22,6 +22,12 @@ module GraphQL
       def breaking?
         breaking_changes.any?
       end
+
+      # If there was a dangerous change between the two schema versions
+      # @return [Boolean]
+      def dangerous?
+        dangerous_changes.any?
+      end
     end
   end
 end
